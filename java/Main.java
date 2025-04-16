@@ -14,6 +14,9 @@ public class Main {
         String outputFile = args[1];
         String key = args[2];
 
+        Path outputDir = Paths.get("outputJava");
+        Path outputPath = outputDir.resolve(outputFile);
+
         List<String> lines = Files.readAllLines(Paths.get(inputFile));
         List<String> encryptedLines = new ArrayList<>();
         List<String> decryptedLines = new ArrayList<>();
@@ -22,28 +25,24 @@ public class Main {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
 
-            long encryptStart = System.nanoTime();
+            long startTime = System.nanoTime();
+            
             String encrypted = XORkryptering.encrypt(line, key);
-            long encryptEnd = System.nanoTime();
-
             encryptedLines.add(encrypted);
-
-            long decryptStart = System.nanoTime();
+            
             String decrypted = XORkryptering.encrypt(encrypted, key);
-            long decryptEnd = System.nanoTime();
-
             decryptedLines.add(decrypted);
+            
+            long endTime = System.nanoTime();
 
-            long encryptTime = encryptEnd - encryptStart;
-            long decryptTime = decryptEnd - decryptStart;
-
-            timeLines.add((i + 1) + " " + encryptTime + " " + decryptTime);
+            long totalTimeMicro = (endTime - startTime) / 1000;
+            timeLines.add(i + "," + totalTimeMicro);
 
         }
 
-        Files.write(Paths.get("encrypted.txt"), encryptedLines);
-        Files.write(Paths.get("decrypted.txt"), decryptedLines);
-        Files.write(Paths.get(outputFile), timeLines);
+        Files.write(Paths.get("encrypted.csv"), encryptedLines);
+        Files.write(Paths.get("decrypted.csv"), decryptedLines);
+        Files.write(outputPath, timeLines);
 
     }
 }
