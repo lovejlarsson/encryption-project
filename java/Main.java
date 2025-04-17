@@ -40,9 +40,11 @@ public class Main {
 
         }
 
-        Files.write(Paths.get("encrypted.csv"), encryptedLines);
-        Files.write(Paths.get("decrypted.csv"), decryptedLines);
+        Files.write(outputDir.resolve("encrypted.csv"), encryptedLines);
+        Files.write(outputDir.resolve("decrypted.csv"), decryptedLines);
         Files.write(outputPath, timeLines);
+
+        System.out.println("Klar, resultat sparat i: " + outputPath);
 
     }
 }
