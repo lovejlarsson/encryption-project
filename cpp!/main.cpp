@@ -4,6 +4,9 @@
 #include <chrono>
 #include <iomanip>
 #include "helper.h"
+#include <iostream>
+#include <fstream>
+#include <iomanip>
 
 int main(int argc, char* argv[]) {
     if (argc != 4) {
@@ -45,7 +48,8 @@ int main(int argc, char* argv[]) {
         std::string decrypted = xorEncryptDecrypt(encrypted, key);
         auto slutTid = std::chrono::high_resolution_clock::now();
 
-        auto tid = std::chrono::duration<double, std::micro>(slutTid - startTid).count();
+ 
+        auto tid = std::chrono::duration<double, std::nano>(slutTid - startTid).count();
 
         /**std::cout << "Rad " << index << ":\n";
         std::cout << "  Original:    " << word << "\n";
@@ -56,7 +60,8 @@ int main(int argc, char* argv[]) {
         std::cout << std::dec << "\n";
         std::cout << "  Dekrypterat: " << decrypted << "\n\n";*/
         //skriver ner till fil 
-        outFile << index << "," << std::fixed << std::setprecision(6) << tid << "\n";
+        outFile << index << "," << std::fixed << std::setprecision(3) << tid << "\n";
+
 
         ++index;
     }
