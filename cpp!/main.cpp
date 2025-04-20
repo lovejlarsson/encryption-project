@@ -47,7 +47,14 @@ int main(int argc, char* argv[]) {
 
         auto tid = std::chrono::duration<double, std::micro>(slutTid - startTid).count();
 
-
+        /**std::cout << "Rad " << index << ":\n";
+        std::cout << "  Original:    " << word << "\n";
+        std::cout << "  Krypterat (hex): ";
+        for (unsigned char c : encrypted) {
+            std::cout << std::hex << std::setw(2) << std::setfill('0') << (int)c << " ";
+        }
+        std::cout << std::dec << "\n";
+        std::cout << "  Dekrypterat: " << decrypted << "\n\n";*/
         //skriver ner till fil 
         outFile << index << "," << std::fixed << std::setprecision(6) << tid << "\n";
 
@@ -69,4 +76,6 @@ int main(int argc, char* argv[]) {
  * För att köra: 
  * .\xorcrypt.exe kodord input.txt output.csv
  * 
+ * 
+ * kört alla med kodordet kodord 
  */
