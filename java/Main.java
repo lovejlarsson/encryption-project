@@ -27,7 +27,7 @@ public class Main {
 
             long startTime = System.nanoTime();
             
-            String encrypted = XORkryptering.encrypt(line, key);
+            /**String encrypted = XORkryptering.encrypt(line, key);
             encryptedLines.add(encrypted);
             
             String decrypted = XORkryptering.encrypt(encrypted, key);
@@ -36,15 +36,34 @@ public class Main {
             long endTime = System.nanoTime();
 
             long totalTimeMicro = (endTime - startTime) / 1000;
-            timeLines.add(i + "," + totalTimeMicro);
+            timeLines.add(i + "," + totalTimeMicro);*/
+
+            for (int j = 0; j < 1000; ++j) {
+                
+                
+                String encrypted = XORkryptering.encrypt(line, key);
+                String decrypted = XORkryptering.encrypt(encrypted, key);
+                
+                
+            }   
+            
+            long endTime = System.nanoTime();
+            long totalTime = (endTime - startTime);
+
+            long averageTimeMicro = totalTime / 1000;
+
+            timeLines.add(i + " 0," + averageTimeMicro);
 
         }
 
-        Files.write(outputDir.resolve("encrypted.csv"), encryptedLines);
+        Files.write(outputPath, timeLines); 
+
+
+        /**Files.write(outputDir.resolve("encrypted.csv"), encryptedLines);
         Files.write(outputDir.resolve("decrypted.csv"), decryptedLines);
         Files.write(outputPath, timeLines);
 
-        System.out.println("Klar, resultat sparat i: " + outputPath);
+        System.out.println("Klar, resultat sparat i: " + outputPath);*/
 
     }
 }

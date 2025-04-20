@@ -44,12 +44,22 @@ int main(int argc, char* argv[]) {
         }
         //tiden sätts igång, kryptering, dekryptering och tiden stopas
         auto startTid = std::chrono::high_resolution_clock::now();
+
+        /** 
         std::string encrypted = xorEncryptDecrypt(word, key);
         std::string decrypted = xorEncryptDecrypt(encrypted, key);
+        */
+
+        for (int j = 0; j < 1000; ++j) {  // 1000 upprepningar för att öka tidsmätningen
+            std::string encrypted = xorEncryptDecrypt(word, key);
+            std::string decrypted = xorEncryptDecrypt(encrypted, key);
+        }
         auto slutTid = std::chrono::high_resolution_clock::now();
 
  
         auto tid = std::chrono::duration<double, std::nano>(slutTid - startTid).count();
+
+        auto genomTid = tid / 1000; 
 
         /**std::cout << "Rad " << index << ":\n";
         std::cout << "  Original:    " << word << "\n";
@@ -60,7 +70,8 @@ int main(int argc, char* argv[]) {
         std::cout << std::dec << "\n";
         std::cout << "  Dekrypterat: " << decrypted << "\n\n";*/
         //skriver ner till fil 
-        outFile << index << "," << std::fixed << std::setprecision(3) << tid << "\n";
+
+        outFile << index << "," << std::fixed << std::setprecision(3) << genomTid << "\n";
 
 
         ++index;
