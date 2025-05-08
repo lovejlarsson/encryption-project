@@ -50,9 +50,9 @@ public class Main {
             long endTime = System.nanoTime();
             long totalTime = (endTime - startTime);
 
-            long averageTimeMicro = totalTime / 1000;
+            long SnittTidORd = totalTime / 1000; 
 
-            timeLines.add(i + " 0," + averageTimeMicro);
+            timeLines.add(i + "," + SnittTidORd);
 
         }
 

@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
  
         auto tid = std::chrono::duration<double, std::nano>(slutTid - startTid).count();
 
-        auto genomTid = tid / 1000; 
+        auto genomTid = tid/1000; 
 
         /**std::cout << "Rad " << index << ":\n";
         std::cout << "  Original:    " << word << "\n";
