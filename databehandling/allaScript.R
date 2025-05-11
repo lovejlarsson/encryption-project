@@ -14,7 +14,7 @@ create_comparison_table <- function(cData, javaData) {
   return(tabell)
 }
 
-create_graph <- function(cData, javaData) {
+create_graph <- function(cData, javaData, titel) {
 
 data <- data.frame(
   Tidsindex = 1:length(cData),   # x-axeln kan vara tid eller index
@@ -32,9 +32,9 @@ data <- data.frame(
 yMin <- min(c(cData, javaData))
 yMax <- max(c(cData, javaData))
 
-plot(data$Tidsindex, data$Varde1, type="o", col="blue", pch=19, 
-     xlab="Index", ylab="Tid", main="Jämförelse av krypteringstid", ylim=c(yMin, yMax))
-points(data$Tidsindex, data$Varde2, type="o", col="red", pch=19)
+plot(data$Tidsindex, data$Varde1, type="l", col="blue", pch=19, 
+     xlab="Index", ylab="Tid", main=titel, ylim=c(yMin, yMax), log = "y")
+points(data$Tidsindex, data$Varde2, type="l", col="red", pch=19)
 legend("topright", legend=c("C++", "Java"), col=c("blue", "red"), pch=19)
 }
 
