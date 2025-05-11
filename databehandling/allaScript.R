@@ -17,7 +17,7 @@ create_comparison_table <- function(cData, javaData) {
 create_graph <- function(cData, javaData) {
 
 data <- data.frame(
-  Tidsindex = 1:length(varde1),   # x-axeln kan vara tid eller index
+  Tidsindex = 1:length(cData),   # x-axeln kan vara tid eller index
   Varde1 = cData,
   Varde2 = javaData
 )
@@ -28,22 +28,23 @@ data <- data.frame(
 # b -> both, linjer först (inte så clean)
 # o -> punkt + linje, punkt över linje
 
-plot(data$Tidsindex, data$Varde1, type="p", col="blue", pch=19, 
-     xlab="Index", ylab="Tid", main="Jämförelse mellan två värden")
+# dynamisk y-axel
+yMin <- min(c(cData, javaData))
+yMax <- max(c(cData, javaData))
+
+plot(data$Tidsindex, data$Varde1, type="o", col="blue", pch=19, 
+     xlab="Index", ylab="Tid", main="Jämförelse av krypteringstid", ylim=c(yMin, yMax))
 points(data$Tidsindex, data$Varde2, type="o", col="red", pch=19)
 legend("topright", legend=c("C++", "Java"), col=c("blue", "red"), pch=19)
 }
 
 create_t_test <- function(cData, javaData) {
-  jResultat <- t.test(javaData)
+  resultat <- t.test(javaData, cData, paired = TRUE)
   jMean <- mean(javaData)
-  cResultat <- t.test(cData)
   cMean <- mean(cData)
   
-  print("T-test för Java:")
-  print(jResultat)
-  print("T-test för C++:")
-  print(cResultat)
+  print("T-test")
+  print(resultat)
   
   # Jämför medelvärden
   diffMean <- jMean - cMean
