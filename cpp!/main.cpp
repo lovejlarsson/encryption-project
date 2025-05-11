@@ -3,10 +3,8 @@
 #include <vector>
 #include <chrono>
 #include <iomanip>
+#include <sstream>
 #include "helper.h"
-#include <iostream>
-#include <fstream>
-#include <iomanip>
 
 int main(int argc, char* argv[]) {
     if (argc != 4) {
@@ -19,70 +17,49 @@ int main(int argc, char* argv[]) {
     std::string outputFile = argv[3];
 
     std::ifstream inFile(inputFile);
-
-    //felutskrifter 
     if (!inFile) {
         std::cerr << "Kunde inte öppna inputfilen.\n";
         return 1;
     }
 
+    std::ostringstream buffer;
+    std::string word;
+    int index = 0;
+
+    while (std::getline(inFile, word)) {
+        if (word.empty()) {
+            std::cout << "Tom rad, hoppar över.\n";
+            continue;
+        }
+
+        auto startTid = std::chrono::high_resolution_clock::now();
+
+        for (int j = 0; j < 1000; ++j) {
+            std::string encrypted = xorEncryptDecrypt(word, key);
+            std::string decrypted = xorEncryptDecrypt(encrypted, key);
+        }
+
+        auto slutTid = std::chrono::high_resolution_clock::now();
+        auto tid = std::chrono::duration<double, std::nano>(slutTid - startTid).count();
+        auto genomTid = tid / 1000.0;  // mikrosekunder
+
+        buffer << index << "," << std::fixed << std::setprecision(3) << genomTid << "\n";
+        ++index;
+    }
+
+    // Skriv hela bufferten till fil i ett svep
     std::ofstream outFile(outputFile);
     if (!outFile) {
         std::cerr << "Kunde inte öppna outputfilen.\n";
         return 1;
     }
 
-    std::string word;
-    int index = 0;
+    outFile << buffer.str();
+    outFile.close();
 
-    while (std::getline(inFile, word)) {
-
-        //sker om man skickar in en input med en tom rad 
-        if (word.empty()) {
-            std::cout << "Tom rad, hoppar över.\n";
-            continue;
-        }
-        //tiden sätts igång, kryptering, dekryptering och tiden stopas
-        auto startTid = std::chrono::high_resolution_clock::now();
-
-        /** 
-        std::string encrypted = xorEncryptDecrypt(word, key);
-        std::string decrypted = xorEncryptDecrypt(encrypted, key);
-        */
-
-        for (int j = 0; j < 1000; ++j) {  // 1000 upprepningar för att öka tidsmätningen
-            std::string encrypted = xorEncryptDecrypt(word, key);
-            std::string decrypted = xorEncryptDecrypt(encrypted, key);
-        }
-        auto slutTid = std::chrono::high_resolution_clock::now();
-
- 
-        auto tid = std::chrono::duration<double, std::nano>(slutTid - startTid).count();
-
-        auto genomTid = tid/1000; 
-
-        /**std::cout << "Rad " << index << ":\n";
-        std::cout << "  Original:    " << word << "\n";
-        std::cout << "  Krypterat (hex): ";
-        for (unsigned char c : encrypted) {
-            std::cout << std::hex << std::setw(2) << std::setfill('0') << (int)c << " ";
-        }
-        std::cout << std::dec << "\n";
-        std::cout << "  Dekrypterat: " << decrypted << "\n\n";*/
-        //skriver ner till fil 
-
-        outFile << index << "," << std::fixed << std::setprecision(3) << genomTid << "\n";
-
-
-        ++index;
-    }
-
-    outFile.close(),
-    //skriver ut att det är klart 
     std::cout << "Kryptering/avkryptering klar. Resultat sparat i: " << outputFile << "\n";
     return 0;
 }
-
 
 
 /**
