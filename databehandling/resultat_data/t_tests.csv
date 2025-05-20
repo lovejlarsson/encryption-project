@@ -1,0 +1,83 @@
+10k10---------------------------------------
+Paired t-test
+
+data:  javaData and cData
+t = 24.397, df = 9999, p-value < 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 19.85276 23.32162
+
+Medelvärden:
+Java: 90.5091 
+C++: 68.92191 
+Skillnad (Java - C++): 21.58719 
+
+10k5------------------------------------------
+Paired t-test
+
+data:  javaData and cData
+t = 26.287, df = 9999, p-value < 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 20.65817 23.98731
+
+Medelvärden:
+Java: 57.6923 
+C++: 35.36956 
+Skillnad (Java - C++): 22.32274 
+
+1k10------------------------------------------
+Paired t-test
+
+data:  javaData and cData
+t = 11.171, df = 999, p-value < 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 32.13447 45.82973
+
+Medelvärden:
+Java: 108.182 
+C++: 69.1999 
+Skillnad (Java - C++): 38.9821 
+
+1k5-------------------------------------------
+Paired t-test
+
+data:  javaData and cData
+t = 10.123, df = 999, p-value < 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 33.79591 50.04849
+
+Medelvärden:
+Java: 79.383 
+C++: 37.4608 
+Skillnad (Java - C++): 41.9222 
+
+500x10------------------------------------------
+Paired t-test
+
+data:  javaData and cData
+t = 0.51486, df = 499, p-value = 0.6069
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -9.51762 16.27722
+
+Medelvärden:
+Java: 83.962 
+C++: 80.5822 
+Skillnad (Java - C++): 3.3798 
+
+500x5------------------------------------------
+Paired t-test
+
+data:  javaData and cData
+t = 7.959, df = 499, p-value = 1.177e-14
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 37.06349 61.36011
+
+Medelvärden:
+Java: 82.338 
+C++: 33.1262 
+Skillnad (Java - C++): 49.2118 
