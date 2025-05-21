@@ -58,15 +58,15 @@ Skillnad (Java - C++): 41.9222
 Paired t-test
 
 data:  javaData and cData
-t = 0.51486, df = 499, p-value = 0.6069
+t = 2.1786, df = 499, p-value = 0.02983
 alternative hypothesis: true mean difference is not equal to 0
 95 percent confidence interval:
- -9.51762 16.27722
+  2.140003 41.464797
 
 Medelvärden:
-Java: 83.962 
-C++: 80.5822 
-Skillnad (Java - C++): 3.3798 
+Java: 194.474 
+C++: 172.6716 
+Skillnad (Java - C++): 21.8024 
 
 500x5------------------------------------------
 Paired t-test
