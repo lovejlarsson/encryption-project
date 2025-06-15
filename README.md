@@ -3,4 +3,4 @@
 - XOR-kryptering i Java och C++
 - Python-skript för att skapa fler ordlistor att kryptera
 - Mätdata bearbetas i R
-- T-test, grafer, och cyklomatisk tidskomplexitet jämförs
+- T-test, grafer, och cyklomatisk komplexitet jämförs
